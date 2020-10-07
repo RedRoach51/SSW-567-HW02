@@ -28,16 +28,13 @@ def classifyTriangle(a,b,c):
     """
 
     # require that the input values be >= 0 and <= 200
-    if a > 200 or b > 200 or c > 200:
-        return 'InvalidInput'
-
-    if a <= 0 or b <= 0 or c <= 0:
+    if (a > 200 or b > 200 or c > 200) or (a <= 0 or b <= 0 or c <= 0):
         return 'InvalidInput'
 
     # verify that all 3 inputs are integers
     # Python's "isinstance(object,type) returns True if the object is of the specified type
     if not(isinstance(a,int) and isinstance(b,int) and isinstance(c,int)):
-        return 'InvalidInput';
+        return 'InvalidInput'
 
     # This information was not in the requirements spec but
     # is important for correctness
@@ -49,15 +46,11 @@ def classifyTriangle(a,b,c):
     # now we know that we have a valid triangle
     if a == b and b == c:
         return 'Equilateral'
-    elif (rightCheck(a,b,c) or rightCheck(b,c,a) or rightCheck(a,c,b)):
+    elif rightCheck(a,b,c) or rightCheck(b,c,a) or rightCheck(a,c,b):
         return 'Right'
     elif (a != b) and  (b != c) and (a != c):
         return 'Scalene'
-    else:
-        return 'Isoceles'
+    return 'Isoceles'
 
 def rightCheck(a,b,c):
-    if (pow(a,2) + pow(b,2) == pow(c,2)):
-        return True
-    else:
-        return False
+    return pow(a,2) + pow(b,2) == pow(c,2)
